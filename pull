@@ -1,0 +1,7 @@
+#!/bin/bash
+
+docker pull docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+docker pull docker.elastic.co/kibana/kibana:6.4.0
+
+docker pull docker.elastic.co/beats/packetbeat:6.4.0
+
