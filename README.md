@@ -1,8 +1,8 @@
-# elastic-env
-Scripts for setting up Elastic Stack environments for experimentation purposes
+# elastic
+Scripts for setting up Elastic Stack environments for sandbox purposes
 
 # Starting Elastic core services
-For convenience, the following starts ElasticSearch and Kibana (6.4.0) in Docker containers:
+For convenience, the following starts ElasticSearch and Kibana in Docker containers:
 
 `docker-compose up`
 
@@ -14,7 +14,7 @@ The Kibana API will be exposed at [http://localhost:5601](http://localhost:5601)
 
 Assuming you're running on a Mac _and_ would like to capture traffic on your host machine, do not run PacketBeat in a Docker container.  Docker for Mac does not support host networking, which would be required for the container to capture the Mac's traffic.
 
-Instead, download PacketBeat 6.4.0 for Mac separately and run with the supplied configuration file:
+Instead, download PacketBeat for Mac separately and run with the supplied configuration file:
 
 `sudo ./packetbeat -c <path-to-packetbeat.yml>`
 
