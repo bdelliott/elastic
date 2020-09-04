@@ -1,4 +1,4 @@
-# elastic
+# elastic-sandbox
 Scripts for setting up Elastic Stack environments for sandbox purposes
 
 # Starting Elastic core services
