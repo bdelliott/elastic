@@ -1,11 +1,12 @@
-version: "3"
+version: "3.8"
 services:
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
     container_name: elasticsearch
     environment:
-      - cluster.name=docker-cluster
+      - cluster.name=single
+      - discovery.type=single-node
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 
@@ -14,17 +15,17 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - esdata1:/usr/share/elasticsearch/data
+      - es_single:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.4.0
+    image: docker.elastic.co/kibana/kibana:7.9.1
     container_name: kibana
 
     ports:
       - 5601:5601
 
 volumes:
-    esdata1:
+    es_single:
       driver: local
