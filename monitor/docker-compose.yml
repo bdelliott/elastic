@@ -1,0 +1,64 @@
+version: "3.8"
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms768m -Xmx768m"
+
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es_single:/usr/share/elasticsearch/data
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - 9200:9200
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.1
+    container_name: kibana
+
+    ports:
+      - 5601:5601
+
+  elasticsearch_monitor:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    container_name: elasticsearch_monitor
+    environment:
+      - cluster.name=monitor
+      - http.port=9400
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es_monitor:/usr/share/elasticsearch/data
+    ports:
+      - 9400:9400
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.1
+    container_name: kibana
+    ports:
+      - 5601:5601
+
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:7.9.1
+    container_name: metricbeat
+    volumes:
+      - ./metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+
+volumes:
+    es_single:
+      driver: local
+    es_monitor:
+      driver: local

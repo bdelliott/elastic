@@ -1,0 +1,5 @@
+Monitored cluster setup:
+
+* Single-node elasticsearch cluster
+* Kibana instance
+* Single-node Monitoring cluster

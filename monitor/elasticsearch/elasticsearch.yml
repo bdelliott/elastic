@@ -1,0 +1,5 @@
+cluster.name: "single-monitored"
+network.host: 0.0.0.0
+
+# enable monitoring data collection:
+xpack.monitoring.collection.enabled: true
