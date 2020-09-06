@@ -5,7 +5,7 @@ metricbeat.modules:
       - node_stats
     period: 10s
     hosts: ["http://elasticsearch:9200"]
-    xpack.enabled: false
+    xpack.enabled: true
 
 output.elasticsearch:
   hosts: ["elasticsearch_monitor:9400"]
